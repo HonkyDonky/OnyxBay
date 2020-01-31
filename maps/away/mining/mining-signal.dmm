@@ -343,7 +343,7 @@
 "gP" = (/obj/effect/decal/cleanable/blood/gibs/limb,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/airless,/area/outpost/abandoned)
 "gQ" = (/obj/structure/cable/orange{icon_state = "0-1"; dir = 1},/obj/machinery/power/tracker,/turf/simulated/floor/asteroid,/area/outpost/abandoned)
 "gR" = (/obj/effect/decal/cleanable/dirt,/obj/structure/cable/orange{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/airless,/area/outpost/abandoned)
-"gS" = (/obj/machinery/firealarm{dir = 4; icon_state = "firex"; layer = 3.3; pixel_x = 26},/turf/simulated/floor/tiled/airless,/area/outpost/abandoned)
+"gS" = (/obj/machinery/firealarm{dir = 4; icon_state = "firex"; pixel_x = 26},/turf/simulated/floor/tiled/airless,/area/outpost/abandoned)
 "gT" = (/obj/effect/floor_decal/solarpanel,/obj/structure/cable/orange{icon_state = "0-1"; dir = 8},/turf/simulated/floor/plating,/area/outpost/abandoned)
 "gU" = (/obj/structure/cable/orange{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/structure/cable/orange{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/plating,/area/outpost/abandoned)
 "gV" = (/obj/effect/floor_decal/solarpanel,/obj/structure/cable/orange{icon_state = "0-1"; dir = 4},/turf/simulated/floor/plating,/area/outpost/abandoned)

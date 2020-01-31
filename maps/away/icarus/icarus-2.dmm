@@ -81,7 +81,7 @@
 "bD" = (/obj/structure/filingcabinet,/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor/tiled,/area/icarus/vessel)
 "bE" = (/obj/structure/window/reinforced/full,/obj/machinery/door/firedoor,/obj/structure/grille,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/icarus/vessel)
 "bF" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled,/area/icarus/vessel)
-"bG" = (/obj/structure/closet,/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla,/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1; layer = 2.4; level = 2},/turf/simulated/floor/tiled,/area/icarus/vessel)
+"bG" = (/obj/structure/closet,/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla,/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1; level = 2},/turf/simulated/floor/tiled,/area/icarus/vessel)
 "bH" = (/obj/structure/bed/chair/comfy/brown{dir = 4},/turf/simulated/floor/tiled,/area/icarus/vessel)
 "bI" = (/obj/structure/table/woodentable,/obj/random/loot,/turf/simulated/floor/tiled,/area/icarus/vessel)
 "bJ" = (/obj/structure/table/woodentable,/turf/simulated/floor/tiled,/area/icarus/vessel)

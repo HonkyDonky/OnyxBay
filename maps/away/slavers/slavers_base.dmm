@@ -269,7 +269,7 @@
 "fi" = (/obj/machinery/atmospherics/pipe/simple/visible/cyan{icon_state = "intact"; dir = 9},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/airless/ceiling,/area/slavers_base/hangar)
 "fj" = (/obj/structure/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/power/apc{dir = 2; name = "Slavers hangar"; operating = 1; pixel_y = -24},/turf/simulated/floor/airless/ceiling,/area/slavers_base/hangar)
 "fk" = (/obj/machinery/light/small,/turf/simulated/floor/airless/ceiling,/area/slavers_base/hangar)
-"fl" = (/obj/effect/decal/cleanable/generic,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 4; layer = 2.4; level = 2},/turf/simulated/floor/airless/ceiling,/area/slavers_base/powatm)
+"fl" = (/obj/effect/decal/cleanable/generic,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 4; level = 2},/turf/simulated/floor/airless/ceiling,/area/slavers_base/powatm)
 "fm" = (/obj/effect/decal/cleanable/generic,/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 4},/turf/simulated/floor/airless/ceiling,/area/slavers_base/powatm)
 "fn" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/door/airlock{name = "Slave hold hallway"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/airless,/area/slavers_base/secwing)
 "fo" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/airless,/area/slavers_base/hallway)
