@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 FAILED=0
 shopt -s globstar
@@ -10,7 +10,7 @@ exactly() { # exactly N name search [mode]
 	search="$3"
 	mode="${4:--E}"
 
-	num="$(grep "$mode" "$search" **/*.dm | wc -l)"
+	num="$(grep "$mode" "$search" **/*.dm | wc -l || true)"
 
 	if [ $num -eq $count ]; then
 		echo "$num $name"
@@ -34,10 +34,17 @@ exactly 44 "world.log<< uses" 'world.log<<|world.log[[:space:]]<<'
 exactly 618 "<< uses" '(?<!<)<<(?!<)' -P
 exactly 0 "incorrect indentations" '^( {4,})' -P
 exactly 34 "text2path uses" 'text2path'
+exactly 3 "update_icon() override" '/update_icon\((.*)\)'  -P
+exactly 1 "goto uses" 'goto '
+exactly 735 "spawn uses" 'spawn\s*\(\s*(-\s*)?\d*\s*\)' -P
 # With the potential exception of << if you increase any of these numbers you're probably doing it wrong
 
 num=`find ./html/changelogs -not -name "*.yml" | wc -l`
 echo "$num non-yml files (expecting exactly 2)"
 [ $num -eq 2 ] || FAILED=1
+
+num=`find . -perm /111 -name "*.dm*" | wc -l`
+echo "$num executable *.dm? files (expecting exactly 0)"
+[ $num -eq 0 ] || FAILED=1
 
 exit $FAILED

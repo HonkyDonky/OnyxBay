@@ -127,6 +127,11 @@
 
 //ATMOS PREMADES
 
+/turf/simulated/floor/airless
+	name = "airless plating"
+	initial_gas = null
+	temperature = TCMB
+
 /turf/simulated/floor/reinforced/airless
 	name = "vacuum floor"
 	initial_gas = null

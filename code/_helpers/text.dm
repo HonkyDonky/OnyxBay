@@ -481,3 +481,9 @@ proc/TextPreview(string,len=40)
 		if (text2ascii(A, i) != text2ascii(B, i))
 			return FALSE
 	return TRUE
+
+// If char isn't part of the text the entire text is returned
+/proc/copytext_after_last(text, char)
+	var/regex/R = regex("(\[^[char]\]*)$")
+	R.Find(text)
+	return R.group[1]

@@ -1,3 +1,25 @@
+/datum/unit_test/cable_colors_shall_be_unique
+	name = "UNIQUENESS: Cable Colors Shall Be Unique"
+
+/datum/unit_test/cable_colors_shall_be_unique/start_test()
+	var/list/names = list()
+	var/list/colors = list()
+
+	var/index = 0
+	for(var/color_name in GLOB.possible_cable_colours)
+		group_by(names, color_name, index)
+		group_by(colors, GLOB.possible_cable_colours[color_name], index)
+		index++
+
+	var/number_of_issues = number_of_issues(names, "Names")
+	number_of_issues += number_of_issues(colors, "Colors")
+
+	if(number_of_issues)
+		fail("[number_of_issues] issues with cable colors found.")
+	else
+		pass("All cable colors are unique.")
+	return 1
+
 /datum/unit_test/research_designs_shall_be_unique
 	name = "UNIQUENESS: Research Designs Shall Be Unique"
 
@@ -49,7 +71,7 @@
 
 	for(var/a in get_all_access_datums())
 		var/datum/access/access = a
-		group_by(access_ids, num2text(access.id), access)
+		group_by(access_ids, access.id, access)
 		group_by(access_descs, access.desc, access)
 
 	var/number_of_issues = number_of_issues(access_ids, "Ids")
@@ -128,11 +150,10 @@
 
 	var/number_of_issues = number_of_issues(backpacks_by_name, "Outfit Backpack Names")
 	if(number_of_issues)
-		fail("[number_of_issues] outfit backpacks\s found.")
+		fail("[number_of_issues] duplicate outfit backpacks\s found.")
 	else
 		pass("All outfit backpacks have unique names.")
 	return 1
-
 
 /datum/unit_test/proc/number_of_issues(list/entries, type, feedback = /decl/noi_feedback)
 	var/issues = 0

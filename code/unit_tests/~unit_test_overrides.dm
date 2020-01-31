@@ -75,3 +75,4 @@ GLOBAL_LIST_EMPTY(unit_test_obj_random_weights_by_type)
 
 /proc/return_true()
 	return TRUE
+

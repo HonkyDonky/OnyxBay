@@ -35,17 +35,17 @@
 			log_bad("[bad_msg] is not supposed to have an APC.")
 			area_good = 0
 
-		if(!A.air_scrub_info.len && !(exemptions & GLOB.using_map.NO_SCRUBBER))
+		if(!A.air_scrub_names.len && !(exemptions & GLOB.using_map.NO_SCRUBBER))
 			log_bad("[bad_msg] lacks an air scrubber.")
 			area_good = 0
-		else if(A.air_scrub_info.len && (exemptions & GLOB.using_map.NO_SCRUBBER))
+		else if(A.air_scrub_names.len && (exemptions & GLOB.using_map.NO_SCRUBBER))
 			log_bad("[bad_msg] is not supposed to have an air scrubber.")
 			area_good = 0
 
-		if(!A.air_vent_info.len && !(exemptions & GLOB.using_map.NO_VENT))
+		if(!A.air_vent_names.len && !(exemptions & GLOB.using_map.NO_VENT))
 			log_bad("[bad_msg] lacks an air vent.[ascii_reset]")
 			area_good = 0
-		else if(A.air_vent_info.len && (exemptions & GLOB.using_map.NO_VENT))
+		else if(A.air_vent_names.len && (exemptions & GLOB.using_map.NO_VENT))
 			log_bad("[bad_msg] is not supposed to have an air vent.")
 			area_good = 0
 
@@ -66,6 +66,44 @@
 		if(istype(area, exempt_type))
 			return GLOB.using_map.apc_test_exempt_areas[exempt_type]
 
+/datum/unit_test/air_alarm_connectivity
+	name = "MAP: Air alarms shall receive updates."
+	async = TRUE // Waits for SStimers to finish one full run before testing
+
+/datum/unit_test/air_alarm_connectivity/start_test()
+	return 1
+
+/datum/unit_test/air_alarm_connectivity/subsystems_to_await()
+	return list(SStimer)
+
+/datum/unit_test/air_alarm_connectivity/check_result()
+	var/failed = FALSE
+	for(var/area/A in world)
+		if(!A.z)
+			continue
+		if(!isPlayerLevel(A.z))
+			continue
+		var/obj/machinery/alarm/alarm = locate() in A // Only test areas with functional alarms
+		if(!alarm)
+			continue
+		if(alarm.stat & (NOPOWER | BROKEN))
+			continue
+
+		for(var/tag in A.air_vent_names) // The point of this test is that while the names list is registered at init, the info is transmitted by radio.
+			if(!A.air_vent_info[tag])
+				log_bad("Vent [A.air_vent_names[tag]] with id_tag [tag] did not update the air alarm in area [A].")
+				failed = TRUE
+		for(var/tag in A.air_scrub_names)
+			if(!A.air_scrub_info[tag])
+				log_bad("Scrubber [A.air_scrub_names[tag]] with id_tag [tag] did not update the air alarm in area [A].")
+				failed = TRUE
+
+	if(failed)
+		fail("Some areas did not receive updates from all of their atmos devices.")
+	else
+		pass("All atmos devices updated their area's air alarms successfully.")
+
+	return 1
 //=======================================================================================
 
 /datum/unit_test/wire_test
@@ -271,6 +309,7 @@ datum/unit_test/ladder_check/start_test()
 			succeeded = check_direction(L, GetAbove(L), UP, DOWN) && succeeded
 		if(L.allowed_directions & DOWN)
 			succeeded = check_direction(L, GetBelow(L), DOWN, UP) && succeeded
+			succeeded = check_open_space(L) && succeeded
 	if(succeeded)
 		pass("All ladders are correctly setup.")
 	else
@@ -278,7 +317,7 @@ datum/unit_test/ladder_check/start_test()
 
 	return 1
 
-/datum/unit_test/ladder_check/proc/check_direction(obj/structure/ladder/L, turf/destination_turf, check_direction, other_ladder_direction)
+/datum/unit_test/ladder_check/proc/check_direction(var/obj/structure/ladder/L, var/turf/destination_turf, var/check_direction, var/other_ladder_direction)
 	if(!destination_turf)
 		log_bad("Unable to acquire turf in the [dir2text(check_direction)] for [log_info_line(L)]")
 		return FALSE
@@ -290,6 +329,13 @@ datum/unit_test/ladder_check/start_test()
 		log_bad("The ladder in the direction [dir2text(check_direction)] is not allowed to connect to [log_info_line(L)]")
 		return FALSE
 	return TRUE
+
+/datum/unit_test/ladder_check/proc/check_open_space(var/obj/structure/ladder/L)
+	if(!istype(get_turf(L), /turf/simulated/open))
+		log_bad("There is a non-open turf blocking the way for [log_info_line(L)]")
+		return FALSE
+	return TRUE
+
 
 //=======================================================================================
 
@@ -466,7 +512,7 @@ datum/unit_test/ladder_check/start_test()
 
 /datum/unit_test/simple_pipes_shall_not_face_north_or_west/start_test()
 	var/failures = 0
-	for(var/obj/machinery/atmospherics/pipe/simple/pipe in SSmachines.machinery)
+	for(var/obj/machinery/atmospherics/pipe/simple/pipe in world) // Pipes are removed from the SSmachines list during init.
 		if(!istype(pipe, /obj/machinery/atmospherics/pipe/simple/hidden) && !istype(pipe, /obj/machinery/atmospherics/pipe/simple/visible))
 			continue
 		if(pipe.dir == NORTH || pipe.dir == WEST)

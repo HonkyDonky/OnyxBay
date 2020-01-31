@@ -685,8 +685,6 @@
 			return global.plant_seed_sprites;
 		if("playable_species")
 			return global.playable_species;
-		if("possible_cable_coil_colours")
-			return global.possible_cable_coil_colours;
 		if("possible_changeling_IDs")
 			return global.possible_changeling_IDs;
 		if("poster_designs")
@@ -1674,8 +1672,6 @@
 			global.plant_seed_sprites=newval;
 		if("playable_species")
 			global.playable_species=newval;
-		if("possible_cable_coil_colours")
-			global.possible_cable_coil_colours=newval;
 		if("possible_changeling_IDs")
 			global.possible_changeling_IDs=newval;
 		if("poster_designs")
@@ -2321,7 +2317,6 @@
 	"pipe_colors",
 	"plant_seed_sprites",
 	"playable_species",
-	"possible_cable_coil_colours",
 	"possible_changeling_IDs",
 	"poster_designs",
 	"power_alarm",

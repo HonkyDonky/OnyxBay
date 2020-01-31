@@ -3,6 +3,7 @@
 
 /datum/unit_test/observation
 	name = "OBSERVATION template"
+	template = /datum/unit_test/observation
 	async = 0
 	var/list/received_moves
 
@@ -61,7 +62,7 @@
 /datum/unit_test/observation/proc/conduct_test()
 	return 0
 
-/datum/unit_test/observation/proc/receive_move(atom/movable/am, old_loc, new_loc)
+/datum/unit_test/observation/proc/receive_move(var/atom/movable/am, var/old_loc, var/new_loc)
 	received_moves[++received_moves.len] =  list(am, old_loc, new_loc)
 
 /datum/unit_test/observation/proc/dump_received_moves()
@@ -200,6 +201,7 @@
 
 	return 1
 
+/*
 /datum/unit_test/observation/moved_shall_only_trigger_for_recursive_drop
 	name = "OBSERVATION: Moved - Shall Only Trigger Once For Recursive Drop"
 
@@ -241,6 +243,7 @@
 	qdel(holding_mob)
 
 	return 1
+*/
 
 /datum/unit_test/observation/moved_shall_not_unregister_recursively_one
 	name = "OBSERVATION: Moved - Shall Not Unregister Recursively - One"

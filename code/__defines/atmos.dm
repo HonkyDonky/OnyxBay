@@ -102,3 +102,9 @@
 
 #define MAX_PUMP_PRESSURE		15000	// Maximal pressure setting for pumps and vents
 #define MAX_OMNI_PRESSURE		7500	// Maximal output(s) pressure for omni devices (filters/mixers)
+
+#define GAS_OXYGEN				"oxygen"
+#define GAS_CO2					"carbon_dioxide"
+#define GAS_PHORON				"phoron"
+#define GAS_NO2					"nitrodioxide"
+#define GAS_NITROGEN			"nitrogen"

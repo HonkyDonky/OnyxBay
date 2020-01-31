@@ -10,6 +10,14 @@
 				"-invisible",
 				"-verbose"
 			]
+		},
+		{
+			"type": "dreammaker",
+			"dme": "baystation12.dme",
+			"problemMatcher": [
+				"$dreammaker"
+			],
+			"group": "build"
 		}
 	]
 }

@@ -1,11 +1,31 @@
 language: generic
 sudo: false
+dist: xenial
+jdk: openjdk8
 
 env:
   global:
     BYOND_MAJOR="512"
     BYOND_MINOR="1488"
-    DM_BUILDFILE="baystation12.dme"
+
+# ALL MAPS MUST BE PRESENT HERE
+# IF THEY ARE NOT, YOUR BUILD WILL FAIL
+matrix:
+    include:
+    - name: "DreamChecker"
+      env: SPACEMAN_DMM_VERSION=suite-1.2
+      cache:
+        directories: $HOME/spaceman_dmm/$SPACEMAN_DMM_VERSION
+      install:
+        - ./scripts/install-spaceman-dmm.sh dreamchecker
+      script:
+        - ~/dreamchecker
+    - name: "Code"
+      env: TEST=CODE
+    - name: "Map - Example"
+      env: TEST=MAP MAP_PATH=example
+    - name: "Map - Exodus"
+      env: TEST=MAP MAP_PATH=exodus
 
 cache:
   directories:
@@ -17,10 +37,12 @@ addons:
       - libc6-i386
       - libgcc1:i386
       - libstdc++6:i386
+      - python
+      - python-pip
+      - uchardet
 
-before_script:
-  - chmod +x ./install-byond.sh
-  - ./install-byond.sh
+script:
+  - test/run-test.sh
 
 after_success:
   - chmod +x ./send-to-discord.sh
@@ -29,10 +51,3 @@ after_success:
 after_failure:
   - chmod +x ./send-to-discord.sh
   - ./send-to-discord.sh failure $WEBHOOK_URL
-
-script:
-  - shopt -s globstar
-  - (! grep 'step_[xy]' maps/**/*.dmm)
-  - (! grep '\bnew/' **/*.dm)
-  - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
-  - bash dm.sh ${DM_BUILDFILE}
