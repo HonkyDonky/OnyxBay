@@ -1268,7 +1268,7 @@
 "yt" = (/obj/structure/table/standard,/obj/item/weapon/autopsy_scanner,/obj/item/weapon/scalpel,/obj/item/weapon/reagent_containers/spray/sterilizine,/obj/effect/floor_decal/corner/green/three_quarters{dir = 8},/turf/simulated/floor/tiled/dark,/area/medical/morgue)
 "yu" = (/obj/machinery/optable,/obj/effect/floor_decal/corner/green/three_quarters{dir = 1},/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled/dark,/area/medical/morgue)
 "yv" = (/turf/simulated/wall,/area/hallway/secondary/entry/fore)
-"yw" = (/obj/machinery/atmospherics/binary/circulator{anchored = 1; dir = 1; layer = 5},/turf/simulated/floor/plating,/area/engineering/engine_room)
+"yw" = (/obj/machinery/atmospherics/binary/circulator{anchored = 1; dir = 1},/turf/simulated/floor/plating,/area/engineering/engine_room)
 "yx" = (/obj/machinery/power/generator{anchored = 1; dir = 4},/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/plating,/area/engineering/engine_room)
 "yy" = (/obj/machinery/atmospherics/binary/circulator{anchored = 1},/turf/simulated/floor/plating,/area/engineering/engine_room)
 "yz" = (/obj/machinery/atmospherics/pipe/simple/hidden/black{icon_state = "intact"; dir = 5},/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled/dark,/area/engineering/engine_room)
