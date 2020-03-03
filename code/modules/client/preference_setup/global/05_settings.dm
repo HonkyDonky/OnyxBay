@@ -30,11 +30,11 @@
 		pref.preference_values = list()
 		for(var/datum/client_preference/cp in get_client_preferences())
 			if(cp.key in preferences_enabled)
-				pref.preference_values[cp.key] = cp.get_options(preference_mob().client)[1] // for the converted preferences, the truthy value is going to be the first one...
+				pref.preference_values[cp.key] = cp.options[1] // for the converted preferences, the truthy value is going to be the first one...
 			else if(cp.key in preferences_disabled)
-				pref.preference_values[cp.key] = cp.get_options(preference_mob().client)[2] // ...and the falsy value the second
+				pref.preference_values[cp.key] = cp.options[2] // ...and the falsy value the second
 			else
-				pref.preference_values[cp.key] = cp.get_default_value(preference_mob().client)
+				pref.preference_values[cp.key] = cp.default_value
 		return 1
 
 /datum/category_item/player_setup_item/player_global/settings/sanitize_preferences()
@@ -51,7 +51,7 @@
 		// if the preference has never been set, or if the player is no longer allowed to set the it, set it to default
 		preference_mob() // we don't care about the mob it returns, but it finds the correct client.
 		if(!client_pref.may_set(pref.client) || !(client_pref.key in pref.preference_values))
-			pref.preference_values[client_pref.key] = client_pref.get_default_value(preference_mob().client)
+			pref.preference_values[client_pref.key] = client_pref.default_value
 
 
 	// Clean out preferences that no longer exist.
