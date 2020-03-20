@@ -729,7 +729,10 @@
 
 
 /obj/item/weapon/robot_item_dispenser/afterattack(atom/A, mob/user as mob, proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
+	if(!isturf(user.loc))
+		return
 	if (!inuse)
 		for (var/datum/dispense_type/T in item_types)
 			if (istype(A,T.item_type))
